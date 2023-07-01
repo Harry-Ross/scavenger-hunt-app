@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using scavenger_hunt_webapi.Models;
+
 namespace scavenger_hunt_webapi
 {
     public class Program
@@ -13,6 +16,11 @@ namespace scavenger_hunt_webapi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ScavengerHuntContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
+            });
 
             var app = builder.Build();
 
