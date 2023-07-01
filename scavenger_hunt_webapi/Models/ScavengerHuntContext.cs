@@ -46,6 +46,11 @@ public class ScavengerHuntContext : DbContext
                 .WithMany(entity => entity.Posts)
                 .HasForeignKey(post => post.UserId)
                 .IsRequired();
+
+            entity.HasOne(post => post.Game)
+                .WithMany(game => game.Posts)
+                .HasForeignKey(post => post.GameId)
+                .IsRequired();
         });
     }
 }
