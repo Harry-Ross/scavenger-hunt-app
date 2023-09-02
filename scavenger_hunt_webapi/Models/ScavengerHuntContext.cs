@@ -31,6 +31,9 @@ public class ScavengerHuntContext : DbContext
 
         modelBuilder.Entity<Team>(entity =>
         {
+            entity.HasAlternateKey(team => team.Guid);
+            entity.HasOne(team => team.Owner).WithMany(user => user.OwnedTeams);
+            entity.HasOne(team => team.Game).WithMany(game => game.Teams);
             entity.HasMany(team => team.Users).WithMany(user => user.Teams);
         });
 
