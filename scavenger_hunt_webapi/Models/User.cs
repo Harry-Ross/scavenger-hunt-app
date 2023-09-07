@@ -1,4 +1,6 @@
-﻿namespace scavenger_hunt_webapi.Models;
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace scavenger_hunt_webapi.Models;
 public class User : BaseEntity
 {
     public int Id { get; set; }
@@ -12,4 +14,5 @@ public class User : BaseEntity
     public ICollection<Game> Games { get; set; } = new List<Game>();
     public ICollection<Team> Teams { get; set; } = new List<Team>();
     public ICollection<Post> Posts { get; set; } = new List<Post>();
+    public ICollection<Team> OwnedTeams { get; set; } = new List<Team>();
 }

@@ -4,7 +4,7 @@ public class Team : BaseEntity
 {
     public int Id { get; set; }
     public Guid Guid { get; set; }
-    public List<User> Users { get; set; }
+    public ICollection<User> Users { get; set; } = new List<User>();
     
     public int GameId { get; set; }
     public Game Game { get; set; }

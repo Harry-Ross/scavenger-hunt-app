@@ -10,7 +10,7 @@ public class Game : BaseEntity
     public DateTime End { get; set; }
     public double Longitude { get; set; }
     public double Latitude { get; set; }
-    public List<User> Users { get; set; }
-    public List<Team> Teams { get; set; }
-    public List<Post> Posts { get; set; }
+    public ICollection<User> Users { get; set; } = new List<User>();
+    public ICollection<Team> Teams { get; set; } = new List<Team>();
+    public ICollection<Post> Posts { get; set; } = new List<Post>();
 }
