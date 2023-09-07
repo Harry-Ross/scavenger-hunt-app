@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using scavenger_hunt_webapi.Models;
 using System.Text;
+using scavenger_hunt_webapi.Services;
 
 namespace scavenger_hunt_webapi
 {
@@ -22,8 +23,8 @@ namespace scavenger_hunt_webapi
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
-                    options.Audience = "";
 
+                    options.SaveToken = true;
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -31,16 +32,22 @@ namespace scavenger_hunt_webapi
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = "",
-                        ValidAudience = "",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secret here"))
+                        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])
+                        )
                     };
                 });
+
+            builder.Services.AddAuthorization();
 
             builder.Services.AddDbContext<ScavengerHuntContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
             });
+
+            builder.Services.AddSingleton<AuthenticationService>();
 
             var app = builder.Build();
 
