@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using scavenger_hunt_webapi.Models;
+using scavenger_hunt_webapi.Entities;
 
 #nullable disable
 
@@ -34,7 +34,7 @@ namespace scavenger_hunt_webapi.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("GameUser");
+                    b.ToTable("GameUser", (string)null);
                 });
 
             modelBuilder.Entity("TeamUser", b =>
@@ -49,7 +49,7 @@ namespace scavenger_hunt_webapi.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("TeamUser");
+                    b.ToTable("TeamUser", (string)null);
                 });
 
             modelBuilder.Entity("scavenger_hunt_webapi.Models.Game", b =>
@@ -92,7 +92,7 @@ namespace scavenger_hunt_webapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("scavenger_hunt_webapi.Models.Post", b =>
@@ -131,7 +131,7 @@ namespace scavenger_hunt_webapi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("scavenger_hunt_webapi.Models.Team", b =>
@@ -177,7 +177,7 @@ namespace scavenger_hunt_webapi.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("scavenger_hunt_webapi.Models.User", b =>
@@ -223,7 +223,7 @@ namespace scavenger_hunt_webapi.Migrations
 
                     b.HasAlternateKey("Guid");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("GameUser", b =>

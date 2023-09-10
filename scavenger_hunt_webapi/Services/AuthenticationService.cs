@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.IdentityModel.Tokens;
-using scavenger_hunt_webapi.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using scavenger_hunt_webapi.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -14,7 +13,7 @@ public class AuthenticationService
     {
         _configuration = configuration;
     }
-    private string GenerateJWT(User user)
+    public string GenerateJWT(User user)
     {
         string secret = _configuration["JWT:Secret"]!;
 
@@ -27,7 +26,7 @@ public class AuthenticationService
         {
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, user.Id)
+                new Claim("id", user.Id.ToString())
             }),
             Expires = expirationTime,
             SigningCredentials = new SigningCredentials(

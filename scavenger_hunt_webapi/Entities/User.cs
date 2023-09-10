@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace scavenger_hunt_webapi.Models;
+﻿namespace scavenger_hunt_webapi.Entities;
 public class User : BaseEntity
 {
     public int Id { get; set; }

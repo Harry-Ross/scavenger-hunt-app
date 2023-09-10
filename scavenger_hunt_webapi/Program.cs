@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
-using scavenger_hunt_webapi.Models;
+using scavenger_hunt_webapi.Entities;
 using System.Text;
 using scavenger_hunt_webapi.Services;
 

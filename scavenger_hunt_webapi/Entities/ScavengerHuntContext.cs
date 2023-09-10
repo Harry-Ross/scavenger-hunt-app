@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace scavenger_hunt_webapi.Models;
+namespace scavenger_hunt_webapi.Entities;
 public class ScavengerHuntContext : DbContext
 {
     public DbSet<User> Users { get; set; }
@@ -17,8 +17,10 @@ public class ScavengerHuntContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasAlternateKey(user => user.Guid);
+            entity.Property(user => user.Guid).HasDefaultValue(new Guid());
+
             entity.Property(user => user.Created).ValueGeneratedOnAdd();
-            entity.Property(user => user.Updated).ValueGeneratedOnAddOrUpdate();
+            entity.Property(user => user.Updated).ValueGeneratedOnAdd();
 
             entity.HasMany(user => user.Posts)
                 .WithOne(e => e.User)

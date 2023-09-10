@@ -1,4 +1,4 @@
-﻿namespace scavenger_hunt_webapi.Models;
+﻿namespace scavenger_hunt_webapi.Entities;
 
 public class Post : BaseEntity
 {
