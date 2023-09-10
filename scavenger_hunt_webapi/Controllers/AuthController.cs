@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using scavenger_hunt_webapi.DTOs;
 using scavenger_hunt_webapi.Entities;
@@ -54,7 +55,7 @@ namespace scavenger_hunt_webapi.Controllers
                 FirstName = input.FirstName, 
                 LastName = input.LastName,
                 Email = input.Email,
-                Password = input.Password,
+                Password =  _authService.HashPassword(input.Password),
             };
 
             _context.Users.Add(user);
